@@ -1,40 +1,26 @@
-## Next.js App Router Course - Starter
+# FRONTEND PRUEBA DE INGRESO
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+# Versiones:
+Node JS: 22.13.1 \
+Next: 15.1
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+# Funcionamiento
+Las páginas principales utilizan Server Side Rendering. \
+Las peticiones HTTP son enviadas al backend mediante Server Actions. \
+La información entre componentes es compartida utilizando variables de entorno. 
 
-CREATE TABLE IF NOT EXISTS administradores (
-      id SERIAL PRIMARY KEY,
-      nombre VARCHAR(255) NOT NULL,
-      email TEXT NOT NULL UNIQUE,
-      password TEXT NOT NULL
-    );
+# Dirección de despliegue (Vercel) (NO Funcional)
+Actualmente el despliegue en Vercel se comunica correctamente con el backend, \
+sin embargo, la información compartida entre componentes utilizando variables de entorno \
+solo aplica localmente, una vez desplegado no existe comunicación entre si y esto \
+impide el correcto funcionamiento.
+https://megapagos-frontend.vercel.app \
 
-CREATE TABLE IF NOT EXISTS proyectos (
-      id SERIAL PRIMARY KEY,
-      nombre VARCHAR(255) NOT NULL,
-      descripcion TEXT,
-      administrador_id INTEGER,
-      FOREIGN KEY (administrador_id) REFERENCES administradores(id)
-    )
+# Instrucciones para despliegue local:
+Ejecutar los siguientes comandos en el terminal \
+git clone https://github.com/jhonatanoc96/megapagos-frontend.git \
+npm install \
+npm run dev
 
-CREATE TABLE IF NOT EXISTS usuarios (
-      id SERIAL PRIMARY KEY,
-      nombre VARCHAR(255) NOT NULL,
-      email TEXT NOT NULL UNIQUE,
-      password TEXT NOT NULL,
-      rol VARCHAR(50) NOT NULL,
-      administrador_id INTEGER,
-      FOREIGN KEY (administrador_id) REFERENCES administradores(id)
-    )
-
-
-CREATE TABLE IF NOT EXISTS usuario_proyectos (
-    id SERIAL PRIMARY KEY,
-    usuario_id INTEGER NOT NULL,
-    proyecto_id INTEGER NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (proyecto_id) REFERENCES proyectos(id)
-    );# megapagos-frontend
-# megapagos-frontend
+# Nota:
+En el archivo app/lib/constants/server-url.constant.ts se configura la URL para conectarse con el backend.
