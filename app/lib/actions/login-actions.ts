@@ -18,9 +18,9 @@ export async function handleLogin(formdata: FormData) {
     } else {
         const { token, user } = response;
 
-        process.env.NEXT_PUBLIC_TOKEN = token.accessToken;
-        process.env.NEXT_PUBLIC_USER = JSON.stringify(user);
-        process.env.NEXT_PUBLIC_ROL = user.rol;
+        process.env.TOKEN = token.accessToken;
+        process.env.USER = JSON.stringify(user);
+        process.env.ROL = user.rol;
 
         if (user.rol === 'administrador') {
             redirect('/dashboard/users');
@@ -68,8 +68,8 @@ export async function handleSignup(formdata: FormData) {
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 

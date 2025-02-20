@@ -9,9 +9,9 @@ export default async function Form({
   id: string
 }) {
 
-  const { NEXT_PUBLIC_USER } = process.env as any;
+  const { USER } = process.env as any;
 
-  const admin_id = JSON.parse(NEXT_PUBLIC_USER).id;
+  const admin_id = JSON.parse(USER).id;
 
   const users = await getUsersByAdminWithProject(admin_id, id);
 

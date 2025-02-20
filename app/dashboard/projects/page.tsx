@@ -23,17 +23,17 @@ export default async function UsersPage({
     const query = params?.query || '';
     const currentPage = params?.page ? Number(params.page) : 1;
 
-    const { NEXT_PUBLIC_ROL, NEXT_PUBLIC_USER } = process.env as any;
+    const { ROL, USER } = process.env as any;
 
     let projects: any[] = [];
     let total_projects = 0;
 
-    if (NEXT_PUBLIC_ROL === 'administrador') {
+    if (ROL === 'administrador') {
         projects = await getProjectsByAdmin(query, currentPage);
         total_projects = await getTotalProjectsByAdmin(query, currentPage);
 
     } else {
-        const id = JSON.parse(NEXT_PUBLIC_USER).id;
+        const id = JSON.parse(USER).id;
         projects = await getProjectsByUserID(id);
     }
 
@@ -45,7 +45,7 @@ export default async function UsersPage({
             <div className="flex w-full items-center justify-between">
                 <h1 className={`${lusitana.className} text-2xl`}>Proyectos</h1>
             </div>
-            {NEXT_PUBLIC_ROL === 'administrador' && (
+            {ROL === 'administrador' && (
                 <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
                     <Search placeholder="Buscar Proyectos..." />
                     <CreateProject />
@@ -54,7 +54,7 @@ export default async function UsersPage({
             <Suspense key={query + currentPage} fallback={<ProjectsTableSkeleton />}>
                 <Table projects={projects} />
             </Suspense>
-            {NEXT_PUBLIC_ROL === 'administrador' && (
+            {ROL === 'administrador' && (
                 <div className="mt-5 flex w-full justify-center">
                     <Pagination totalPages={totalPages} />
                 </div>)}

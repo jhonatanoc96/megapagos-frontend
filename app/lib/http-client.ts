@@ -24,8 +24,8 @@ export async function sendHttpRequest(
   const data = response.json();
 
   if (status === 403) {
-    process.env.NEXT_PUBLIC_TOKEN = '';
-    process.env.NEXT_PUBLIC_USER = '';
+    process.env.TOKEN = '';
+    process.env.USER = '';
     const msg = "No tienes permisos para acceder a esta página";
     redirect('/login?status=403&message=' + msg);
   }

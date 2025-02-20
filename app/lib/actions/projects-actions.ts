@@ -6,30 +6,30 @@ import { ITEMS_PER_PAGE } from "../constants/items-per-page.constant";
 import { revalidatePath } from "next/cache";
 
 export async function getProjectsByAdmin(query: string = '', currentPage: number = 1) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
-    const { id } = JSON.parse(NEXT_PUBLIC_USER);
+    const { id } = JSON.parse(USER);
     let path = '/proyectos/obtener-por-admin/' + id + '?query=' + query + '&page=' + currentPage + '&limit=' + ITEMS_PER_PAGE;
 
-    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 
@@ -39,29 +39,29 @@ export async function getProjectsByAdmin(query: string = '', currentPage: number
 }
 
 export async function getProjectById(id: string) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     let path = '/proyectos/obtener-por-id/' + id;
 
-    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 
@@ -71,30 +71,30 @@ export async function getProjectById(id: string) {
 }
 
 export async function getTotalProjectsByAdmin(query: string = '', currentPage: number = 1) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
-    const { id } = JSON.parse(NEXT_PUBLIC_USER);
+    const { id } = JSON.parse(USER);
     let path = '/proyectos/obtener-total-por-admin/' + id + '?query=' + query + '&page=' + currentPage + '&limit=' + ITEMS_PER_PAGE;
 
-    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 
@@ -118,15 +118,15 @@ export async function createProject(formdata: FormData) {
         }
     }
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
+    if (!TOKEN || !USER) {
         process.env.TOKEN = '';
         process.env.USER = '';
         return redirect('/login');
     }
 
-    const { id } = JSON.parse(NEXT_PUBLIC_USER);
+    const { id } = JSON.parse(USER);
 
     let path = '/proyectos/crear';
 
@@ -136,13 +136,13 @@ export async function createProject(formdata: FormData) {
         administrador_id: id
     };
 
-    const response = await sendHttpRequest(path, 'POST', NEXT_PUBLIC_TOKEN, body);
+    const response = await sendHttpRequest(path, 'POST', TOKEN, body);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
@@ -164,17 +164,17 @@ export async function editProject(formdata: FormData) {
         descripcion: formdata.get('description')
     }
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     let path = '/proyectos/actualizar/' + rawFormData.id;
 
-    const { id } = JSON.parse(NEXT_PUBLIC_USER);
+    const { id } = JSON.parse(USER);
 
     let body = {
         data: {
@@ -184,13 +184,13 @@ export async function editProject(formdata: FormData) {
         }
     };
 
-    const response = await sendHttpRequest(path, 'PUT', NEXT_PUBLIC_TOKEN, body);
+    const response = await sendHttpRequest(path, 'PUT', TOKEN, body);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
@@ -219,23 +219,23 @@ export async function deleteProject(formdata: FormData) {
         }
     }
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     let path = '/proyectos/eliminar/' + rawFormData.id;
 
-    const response = await sendHttpRequest(path, 'DELETE', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'DELETE', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 

@@ -7,30 +7,30 @@ import { revalidatePath } from "next/cache";
 
 export async function getUsersByAdmin(env: any, query: string = '', currentPage: number = 1) {
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = env;
+    const { TOKEN, USER } = env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
-    const { id } = JSON.parse(NEXT_PUBLIC_USER);
+    const { id } = JSON.parse(USER);
     let path = '/usuarios/obtener-por-admin/' + id + '?query=' + query + '&page=' + currentPage + '&limit=' + ITEMS_PER_PAGE;
 
-    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 
@@ -40,29 +40,29 @@ export async function getUsersByAdmin(env: any, query: string = '', currentPage:
 }
 
 export async function getUsersByAdminWithProject(admin_id: string, project_id: string) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     let path = '/usuarios/obtener-por-admin-con-proyecto/' + admin_id + '/' + project_id;
 
-    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 
@@ -72,29 +72,29 @@ export async function getUsersByAdminWithProject(admin_id: string, project_id: s
 }
 
 export async function getUserById(id: string) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     let path = '/usuarios/obtener-por-id/' + id;
 
-    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 
@@ -104,30 +104,30 @@ export async function getUserById(id: string) {
 }
 
 export async function getTotalUsersByAdmin(env: any, query: string = '', currentPage: number = 1) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = env;
+    const { TOKEN, USER } = env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
-    const { id } = JSON.parse(NEXT_PUBLIC_USER);
+    const { id } = JSON.parse(USER);
     let path = '/usuarios/obtener-total-por-admin/' + id + '?query=' + query + '&page=' + currentPage + '&limit=' + ITEMS_PER_PAGE;
 
-    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 
@@ -158,15 +158,15 @@ export async function createUser(formdata: FormData) {
         return redirect(path);
     }
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
-    const { id } = JSON.parse(NEXT_PUBLIC_USER);
+    const { id } = JSON.parse(USER);
 
     let path = '/usuarios/registrar';
 
@@ -178,13 +178,13 @@ export async function createUser(formdata: FormData) {
         administrador_id: id
     };
 
-    const response = await sendHttpRequest(path, 'POST', NEXT_PUBLIC_TOKEN, body);
+    const response = await sendHttpRequest(path, 'POST', TOKEN, body);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
@@ -206,11 +206,11 @@ export async function editUser(formdata: FormData) {
         email: formdata.get('email'),
     }
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
@@ -223,13 +223,13 @@ export async function editUser(formdata: FormData) {
         }
     };
 
-    const response = await sendHttpRequest(path, 'PUT', NEXT_PUBLIC_TOKEN, body);
+    const response = await sendHttpRequest(path, 'PUT', TOKEN, body);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
@@ -260,11 +260,11 @@ export async function changePassword(formdata: FormData) {
         }
     }
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
@@ -277,13 +277,13 @@ export async function changePassword(formdata: FormData) {
         }
     };
 
-    const response = await sendHttpRequest(path, 'PUT', NEXT_PUBLIC_TOKEN, body);
+    const response = await sendHttpRequest(path, 'PUT', TOKEN, body);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
@@ -312,23 +312,23 @@ export async function deleteUser(formdata: FormData) {
         }
     }
 
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+    const { TOKEN, USER } = process.env;
 
-    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 
     let path = '/usuarios/eliminar/' + rawFormData.id;
 
-    const response = await sendHttpRequest(path, 'DELETE', NEXT_PUBLIC_TOKEN);
+    const response = await sendHttpRequest(path, 'DELETE', TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.NEXT_PUBLIC_TOKEN = '';
-        process.env.NEXT_PUBLIC_USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 

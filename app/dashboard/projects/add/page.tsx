@@ -7,9 +7,9 @@ export default async function Page({
 }: {
     searchParams?: Promise<{ id: string }>;
 }) {
-    const { NEXT_PUBLIC_ROL } = process.env;
+    const { ROL } = process.env;
 
-    if (NEXT_PUBLIC_ROL === 'usuario') {
+    if (ROL === 'usuario') {
         return redirect('/dashboard/projects');
     }
 
