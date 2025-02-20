@@ -38,7 +38,6 @@ export async function getUsersByAdmin(query: string = '', currentPage: number = 
 
 }
 
-
 export async function getUserById(id: string) {
     const { TOKEN, USER } = process.env;
 

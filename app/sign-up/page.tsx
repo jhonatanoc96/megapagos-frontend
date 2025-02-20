@@ -1,117 +1,115 @@
-'use client';
-
-import { useState } from 'react';
-import styles from './login.module.css';
+import styles from './sign-up.module.css';
 import { lusitana } from '@ui/fonts';
 import {
   AtSymbolIcon,
   KeyIcon,
-  ExclamationCircleIcon,
+  UserCircleIcon
 } from '@heroicons/react/24/outline';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import { Button } from '../ui/button';
-import { sendHttpRequest } from '../lib/utils';
-import { redirect } from 'next/navigation';
+import { Button } from '@ui/button';
+import { handleSignup } from '@lib/actions/login-actions';
+import { Notification } from '@ui/users/notification';
+import { LoginButton } from '@ui/login-button';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  const [token, setToken] = useState('');
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const data = { email, password };
-    const response: any = await sendHttpRequest('/usuarios/autenticar', 'POST', data);
-
-    console.log("Response: ", response);
-
-    const { status, message, token } = response;
-
-    if (!status || !message) {
-      setSuccess('');
-      return setError('Respuesta inválida del servidor');
-    }
-
-    if (status !== 200) {
-      setSuccess('');
-      return setError(message);
-    }
-
-    setSuccess(message);
-    setError('');
-    setToken(token.accessToken);
-    localStorage.setItem('token', token.accessToken);
-    redirect('/dashboard');
-  };
 
   return (
-    <form className="space-y-3" onSubmit={handleLogin}>
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Please log in to continue.
-        </h1>
-        <div className="w-full">
-          <div>
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <div className="relative">
-              <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+    <div className={`${styles.container} flex items-center justify-center min-h-screen w-full`}>
+      <Notification />
+      <form className="space-y-3" action={handleSignup}>
+        <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+          <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+            Registrarse
+          </h1>
+          <div className="w-full">
+            <div className="rounded-md bg-gray-50 p-4 md:p-6">
+              {/* Nombre */}
+              <div className="mb-4">
+                <label htmlFor="amount" className="mb-2 block text-sm font-medium">
+                  Nombre
+                </label>
+                <div className="relative mt-2 rounded-md">
+                  <div className="relative">
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Ingrese el nombre"
+                      className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                      required
+                    />
+                    <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Correo */}
+              <div className="mb-4">
+                <label htmlFor="email" className="mb-2 block text-sm font-medium">
+                  Correo
+                </label>
+                <div className="relative mt-2 rounded-md">
+                  <div className="relative">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="Ingrese el correo electrónico"
+                      className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                      required
+                    />
+                    <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Contraseña */}
+              <div className="mb-4">
+                <label htmlFor="password" className="mb-2 block text-sm font-medium">
+                  Contraseña
+                </label>
+                <div className="relative mt-2 rounded-md">
+                  <div className="relative">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Ingrese la contraseña"
+                      className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                      required
+                    />
+                    <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Confirmar Contraseña */}
+              <div className="mb-4">
+                <label htmlFor="password_confirmation" className="mb-2 block text-sm font-medium">
+                  Confirmar Contraseña
+                </label>
+                <div className="relative mt-2 rounded-md">
+                  <div className="relative">
+                    <input
+                      id="password_confirmation"
+                      name="password_confirmation"
+                      type="password"
+                      placeholder="Confirme la contraseña"
+                      className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                      required
+                    />
+                    <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="mt-4">
-            <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <div className="relative">
-              <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength={6}
-              />
-              <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-            </div>
-          </div>
+          <Button type="submit" className="mt-4 w-full">
+            Registrarse <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+          </Button>
+          <LoginButton />
         </div>
-        {error && (
-          <div className="mt-4 text-red-500">
-            <ExclamationCircleIcon className="inline h-5 w-5" /> {error}
-          </div>
-        )}
-        {success && (
-          <div className="mt-4 text-green-500">
-            <ExclamationCircleIcon className="inline h-5 w-5" /> {success}
-          </div>
-        )}
-        <Button className="mt-4 w-full">
-          Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
-        </Button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
