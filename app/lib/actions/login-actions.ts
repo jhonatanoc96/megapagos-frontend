@@ -3,7 +3,6 @@
 import { redirect } from "next/navigation";
 import { sendHttpRequest } from "../http-client";
 import { revalidatePath } from "next/cache";
-import { environment } from "../utils";
 
 export async function handleLogin(formdata: FormData) {
 
@@ -19,9 +18,9 @@ export async function handleLogin(formdata: FormData) {
     } else {
         const { token, user } = response;
 
-        environment.TOKEN = token.accessToken;
-        environment.USER = JSON.stringify(user);
-        environment.ROL = user.rol;
+        process.env.TOKEN = token.accessToken;
+        process.env.USER = JSON.stringify(user);
+        process.env.ROL = user.rol;
 
         if (user.rol === 'administrador') {
             redirect('/dashboard/users');
@@ -69,8 +68,8 @@ export async function handleSignup(formdata: FormData) {
     const { status, message } = response;
 
     if (!status || !message) {
-        environment.TOKEN = '';
-        environment.USER = '';
+        process.env.TOKEN = '';
+        process.env.USER = '';
         return redirect('/login');
     }
 

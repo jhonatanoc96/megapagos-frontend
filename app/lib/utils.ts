@@ -1,5 +1,3 @@
-export let environment: any = {};
-
 export const formatDate = (dateStr: string) => {
   const dateObj = new Date(dateStr);
   const utcOffset = -5 * 60; // UTC-5 in minutes
