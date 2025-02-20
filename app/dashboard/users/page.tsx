@@ -13,10 +13,10 @@ import { redirect } from 'next/navigation';
 export default async function UsersPage({
     searchParams
 }: {
-    searchParams?: {
-        query?: string
-        page?: string
-    }
+    searchParams?: Promise<{
+        query: string
+        page: string
+    }>
 }) {
     const { ROL } = process.env;
 

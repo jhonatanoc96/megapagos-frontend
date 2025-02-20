@@ -13,10 +13,10 @@ import { getProjectsByUserID } from '@/app/lib/actions/users-projects-actions';
 export default async function UsersPage({
     searchParams
 }: {
-    searchParams?: {
-        query?: string
-        page?: string
-    }
+    searchParams?: Promise<{
+        query: string
+        page: string
+    }>
 }) {
     const params = await searchParams;
 

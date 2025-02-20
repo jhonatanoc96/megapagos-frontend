@@ -5,9 +5,9 @@ import { redirect } from 'next/navigation';
 export default async function Page({
     searchParams
 }: {
-    searchParams?: {
-        id: string;
-    }
+    searchParams?: Promise<{
+        id: string
+    }>
 }) {
     const { ROL } = process.env;
 

@@ -1,6 +1,7 @@
 import Form from '@ui/users/create-form';
 import Breadcrumbs from '@ui/users/breadcrumbs';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
 export default async function Page() {
     const { ROL } = process.env;
@@ -10,18 +11,20 @@ export default async function Page() {
     }
 
     return (
-        <main>
-            <Breadcrumbs
-                breadcrumbs={[
-                    { label: 'Usuarios', href: '/dashboard/users' },
-                    {
-                        label: 'Crear Usuario',
-                        href: '/dashboard/users/create',
-                        active: true,
-                    },
-                ]}
-            />
-            <Form />
-        </main>
+        <Suspense>
+            <main>
+                <Breadcrumbs
+                    breadcrumbs={[
+                        { label: 'Usuarios', href: '/dashboard/users' },
+                        {
+                            label: 'Crear Usuario',
+                            href: '/dashboard/users/create',
+                            active: true,
+                        },
+                    ]}
+                />
+                <Form />
+            </main>
+        </Suspense>
     );
 }
