@@ -1,5 +1,5 @@
 import { formatDate } from '@/app/lib/utils';
-import { DeleteProject, UpdateProject } from './buttons';
+import { AddUser, DeleteProject, UpdateProject } from './buttons';
 
 export default async function UsersTable({
   projects
@@ -29,6 +29,7 @@ export default async function UsersTable({
                 {ROL === 'administrador' && (
                   <div className="flex w-full items-center justify-between pt-4">
                     <div className="flex justify-end gap-2">
+                      <AddUser id={project.id} />
                       <UpdateProject id={project.id} />
                       <DeleteProject id={project.id} />
                     </div>
@@ -74,6 +75,7 @@ export default async function UsersTable({
                   {ROL === 'administrador' && (
                     <td className="whitespace-nowrap py-3 pl-6 pr-3">
                       <div className="flex justify-end gap-3">
+                        <AddUser id={project.id} />
                         <UpdateProject id={project.id} />
                         <DeleteProject id={project.id} />
                       </div>

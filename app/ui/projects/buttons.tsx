@@ -1,5 +1,5 @@
 import { deleteProject } from '@/app/lib/actions/projects-actions';
-import { PencilIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, PlusIcon, TrashIcon, UserPlusIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 export function CreateProject() {
@@ -10,6 +10,18 @@ export function CreateProject() {
     >
       <span className="hidden md:block">Crear Proyecto</span>{' '}
       <PlusIcon className="h-5 md:ml-4" />
+    </Link>
+  );
+}
+
+export function AddUser({ id }: { id: string }) {
+  const href = `/dashboard/projects/add?id=${id}`;
+  return (
+    <Link
+      href={href}
+      className="rounded-md border p-2 hover:bg-gray-100"
+    >
+      <UserPlusIcon className="w-5" />
     </Link>
   );
 }
