@@ -23,4 +23,6 @@ npm install \
 npm run dev
 
 # Nota:
-En el archivo app/lib/constants/server-url.constant.ts se configura la URL para conectarse con el backend.
+En el archivo app/lib/constants/server-url.constant.ts se configura la URL para conectarse con el backend. \
+Se implementa paginación y filtros en interfaces de usuarios 
+y proyectos.
