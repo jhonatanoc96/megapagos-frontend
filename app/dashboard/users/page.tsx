@@ -9,6 +9,7 @@ import { ITEMS_PER_PAGE } from '@/app/lib/constants/items-per-page.constant';
 import { getTotalUsersByAdmin, getUsersByAdmin } from '@/app/lib/actions/users-actions';
 import { Notification } from '@/app/ui/users/notification';
 import { redirect } from 'next/navigation';
+import { environment } from '@/app/lib/utils';
 
 export default async function UsersPage({
     searchParams
@@ -18,7 +19,7 @@ export default async function UsersPage({
         page: string
     }>
 }) {
-    const { ROL } = process.env;
+    const { ROL } = environment;
 
     if (ROL === 'usuario') {
         return redirect('/dashboard/projects');
@@ -29,9 +30,9 @@ export default async function UsersPage({
     const query = params?.query || '';
     const currentPage = params?.page ? Number(params.page) : 1;
 
-    const users = await getUsersByAdmin(process.env, query, currentPage);
+    const users = await getUsersByAdmin(query, currentPage);
 
-    const total_users = await getTotalUsersByAdmin(process.env, query, currentPage);
+    const total_users = await getTotalUsersByAdmin(query, currentPage);
     const totalPages = Math.ceil(total_users / ITEMS_PER_PAGE);
 
     return (

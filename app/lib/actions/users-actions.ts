@@ -4,10 +4,11 @@ import { redirect } from "next/navigation";
 import { sendHttpRequest } from "../http-client";
 import { ITEMS_PER_PAGE } from "../constants/items-per-page.constant";
 import { revalidatePath } from "next/cache";
+import { environment } from "../utils";
 
-export async function getUsersByAdmin(env: any, query: string = '', currentPage: number = 1) {
+export async function getUsersByAdmin(query: string = '', currentPage: number = 1) {
 
-    const { TOKEN, USER } = env;
+    const { TOKEN, USER } = environment;
 
     if (!TOKEN || !USER) {
         process.env.TOKEN = '';
@@ -103,8 +104,8 @@ export async function getUserById(id: string) {
 
 }
 
-export async function getTotalUsersByAdmin(env: any, query: string = '', currentPage: number = 1) {
-    const { TOKEN, USER } = env;
+export async function getTotalUsersByAdmin(query: string = '', currentPage: number = 1) {
+    const { TOKEN, USER } = environment;
 
     if (!TOKEN || !USER) {
         process.env.TOKEN = '';
