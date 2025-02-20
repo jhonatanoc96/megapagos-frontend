@@ -1,6 +1,6 @@
 import { DocumentDuplicateIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 
-export const LINKS = [
+export const LINKS_ADMIN = [
     {
       name: 'Usuarios',
       href: '/dashboard/users',

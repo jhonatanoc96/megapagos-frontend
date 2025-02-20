@@ -4,6 +4,8 @@ import AcmeLogo from '@ui/acme-logo';
 import { Logout } from '../logout-button';
 
 export default function SideNav() {
+  const { ROL } = process.env as any;
+
   return (
     <div className="flex h-full flex-col px-3 py-4 md:px-2">
       <Link
@@ -15,7 +17,7 @@ export default function SideNav() {
         </div>
       </Link>
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <NavLinks />
+        <NavLinks rol={ROL} />
         <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
         <div>
           <Logout />

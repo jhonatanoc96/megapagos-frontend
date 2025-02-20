@@ -20,8 +20,13 @@ export async function handleLogin(formdata: FormData) {
 
         process.env.TOKEN = token.accessToken;
         process.env.USER = JSON.stringify(user);
+        process.env.ROL = user.rol;
 
-        redirect('/dashboard/users');
+        if (user.rol === 'administrador') {
+            redirect('/dashboard/users');
+        } else {
+            redirect('/dashboard/projects');
+        }
     }
 }
 

@@ -8,7 +8,6 @@ import { Suspense } from 'react';
 import { ITEMS_PER_PAGE } from '@/app/lib/constants/items-per-page.constant';
 import { getTotalUsersByAdmin, getUsersByAdmin } from '@/app/lib/actions/users-actions';
 import { Notification } from '@/app/ui/users/notification';
-import { redirect } from 'next/navigation';
 
 export default async function UsersPage({
     searchParams
@@ -18,26 +17,22 @@ export default async function UsersPage({
         page?: string
     }
 }) {
-    const { ROL } = process.env;
-
-    if (ROL === 'usuario') {
-        return redirect('/dashboard/projects');
-    }
-
     const params = await searchParams;
 
     const query = params?.query || '';
     const currentPage = params?.page ? Number(params.page) : 1;
 
-    const users = await getUsersByAdmin(query, currentPage);
-    const total_users = await getTotalUsersByAdmin(query, currentPage);
+    // const users = await getUsersByAdmin(query, currentPage);
+    const users: any = [];
+    // const total_users = await getTotalUsersByAdmin(query, currentPage);
+    const total_users = 0;
     const totalPages = Math.ceil(total_users / ITEMS_PER_PAGE);
 
     return (
         <div className="w-full">
             <Notification />
             <div className="flex w-full items-center justify-between">
-                <h1 className={`${lusitana.className} text-2xl`}>Usuarios</h1>
+                <h1 className={`${lusitana.className} text-2xl`}>Proyectos</h1>
             </div>
             <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
                 <Search placeholder="Buscar Usuarios..." />

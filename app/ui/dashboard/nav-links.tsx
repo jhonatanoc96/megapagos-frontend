@@ -2,10 +2,21 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LINKS } from '@constants/links.constant';
+import { LINKS_ADMIN } from '@/app/lib/constants/links-admin.constant';
+import { LINKS_USER } from '@/app/lib/constants/links-user.constant';
 
-export default function NavLinks() {
+export default function NavLinks({
+  rol
+}: {
+  rol: string;
+}) {
   const pathname = usePathname()
+
+  let LINKS = LINKS_USER;
+
+  if (rol === 'administrador') {
+    LINKS = LINKS_ADMIN;
+  }
 
   return (
     <>

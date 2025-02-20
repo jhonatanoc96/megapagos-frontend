@@ -9,12 +9,6 @@ export default async function Page({
         id: string;
     }
 }) {
-    const { ROL } = process.env;
-
-    if (ROL === 'usuario') {
-        return redirect('/dashboard/projects');
-    }
-    
     const params: any = await searchParams;
 
     const id = params?.id;
