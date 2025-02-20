@@ -20,22 +20,19 @@ export default async function UsersPage({
 }) {
     const { ROL } = process.env;
 
-    // if (ROL === 'usuario') {
-    //     return redirect('/dashboard/projects');
-    // }
+    if (ROL === 'usuario') {
+        return redirect('/dashboard/projects');
+    }
 
     const params = await searchParams;
 
     const query = params?.query || '';
     const currentPage = params?.page ? Number(params.page) : 1;
 
-    // const users = await getUsersByAdmin(query, currentPage);
-    const users: any = [];
+    const users = await getUsersByAdmin(query, currentPage);
 
-    // const total_users = await getTotalUsersByAdmin(query, currentPage);
-    // const totalPages = Math.ceil(total_users / ITEMS_PER_PAGE);
-    const total_users = 0;
-    const totalPages = 0;
+    const total_users = await getTotalUsersByAdmin(query, currentPage);
+    const totalPages = Math.ceil(total_users / ITEMS_PER_PAGE);
 
     return (
         <div className="w-full">
