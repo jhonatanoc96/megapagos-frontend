@@ -5,8 +5,9 @@ import { sendHttpRequest } from "../http-client";
 import { ITEMS_PER_PAGE } from "../constants/items-per-page.constant";
 import { revalidatePath } from "next/cache";
 
-export async function getUsersByAdmin(query: string = '', currentPage: number = 1) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+export async function getUsersByAdmin(env: any, query: string = '', currentPage: number = 1) {
+
+    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = env;
 
     if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
         process.env.NEXT_PUBLIC_TOKEN = '';
@@ -102,8 +103,8 @@ export async function getUserById(id: string) {
 
 }
 
-export async function getTotalUsersByAdmin(query: string = '', currentPage: number = 1) {
-    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
+export async function getTotalUsersByAdmin(env: any, query: string = '', currentPage: number = 1) {
+    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = env;
 
     if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
         process.env.NEXT_PUBLIC_TOKEN = '';

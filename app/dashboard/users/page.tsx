@@ -29,8 +29,9 @@ export default async function UsersPage({
     const query = params?.query || '';
     const currentPage = params?.page ? Number(params.page) : 1;
 
-    const users = await getUsersByAdmin(query, currentPage);
-    const total_users = await getTotalUsersByAdmin(query, currentPage);
+    const users = await getUsersByAdmin(process.env, query, currentPage);
+
+    const total_users = await getTotalUsersByAdmin(process.env, query, currentPage);
     const totalPages = Math.ceil(total_users / ITEMS_PER_PAGE);
 
     return (
