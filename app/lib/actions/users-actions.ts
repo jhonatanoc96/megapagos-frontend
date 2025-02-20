@@ -38,6 +38,38 @@ export async function getUsersByAdmin(query: string = '', currentPage: number = 
 
 }
 
+export async function getUsersByAdminWithProject(admin_id: string, project_id: string) {
+    const { TOKEN, USER } = process.env;
+
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
+        return redirect('/login');
+    }
+
+    let path = '/usuarios/obtener-por-admin-con-proyecto/' + admin_id + '/' + project_id;
+
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
+
+    const { status, message } = response;
+
+    if (!status || !message) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
+        return redirect('/login');
+    }
+
+    if (status !== 200) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
+        return redirect(`/login?status=${status}&message=${message}`);
+    }
+
+    const usuarios = response.response.usuarios;
+
+    return usuarios;
+}
+
 export async function getUserById(id: string) {
     const { TOKEN, USER } = process.env;
 
