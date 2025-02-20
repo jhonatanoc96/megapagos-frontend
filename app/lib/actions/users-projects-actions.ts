@@ -11,8 +11,6 @@ export async function handleUserProject(formdata: FormData) {
         asignado: formdata.get('asignado'),
     }
 
-    console.log("rawFormData -----> ", rawFormData);
-
     // Check if any field in rawFormData is empty
     for (const key in rawFormData) {
         if (!rawFormData[key]) {
@@ -62,4 +60,36 @@ export async function handleUserProject(formdata: FormData) {
 
     revalidatePath('/dashboard/projects');
     redirect(`/dashboard/projects?id=${rawFormData.proyecto_id}&status=200&message=${message}`);
+}
+
+export async function getProjectsByUserID(id: string) {
+    const { TOKEN, USER } = process.env;
+
+    if (!TOKEN || !USER) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
+        return redirect('/login');
+    }
+
+    let path = '/usuario-proyectos/obtener-por-usuario/' + id;
+
+    const response = await sendHttpRequest(path, 'GET', TOKEN);
+
+    const { status, message } = response;
+
+    if (!status || !message) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
+        return redirect('/login');
+    }
+
+    if (status !== 200) {
+        process.env.TOKEN = '';
+        process.env.USER = '';
+        return redirect(`/login?status=${status}&message=${message}`);
+    }
+
+    const proyectos = response.response.proyectos;
+
+    return proyectos;
 }

@@ -65,8 +65,6 @@ export async function handleSignup(formdata: FormData) {
 
     const response = await sendHttpRequest(path, 'POST', '', body);
 
-    console.log("Response: ", response);
-
     const { status, message } = response;
 
     if (!status || !message) {
