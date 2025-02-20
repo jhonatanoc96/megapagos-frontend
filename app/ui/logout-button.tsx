@@ -5,8 +5,9 @@ import { redirect } from 'next/navigation';
 
 export function Logout() {
   const handleLogout = async () => {
-    process.env.TOKEN = '';
-    process.env.USER = '';
+    process.env.NEXT_PUBLIC_TOKEN = '';
+    process.env.NEXT_PUBLIC_USER = '';
+    process.env.NEXT_PUBLIC_ROL = '';
     redirect('/login');
   }
   return (

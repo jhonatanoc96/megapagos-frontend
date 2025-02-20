@@ -101,7 +101,7 @@ export function UsersTableSkeleton() {
 }
 
 export function ProjectsMobileSkeleton() {
-  const { ROL } = process.env;
+  const { NEXT_PUBLIC_ROL } = process.env;
 
   return (
     <div className="mb-2 w-full rounded-md bg-white p-4">
@@ -116,7 +116,7 @@ export function ProjectsMobileSkeleton() {
           <div className="h-6 w-16 rounded bg-gray-100"></div>
           <div className="mt-2 h-6 w-24 rounded bg-gray-100"></div>
         </div>
-        {ROL === 'administrador' && (
+        {NEXT_PUBLIC_ROL === 'administrador' && (
           <div className="flex justify-end gap-2">
             <div className="h-10 w-10 rounded bg-gray-100"></div>
             <div className="h-10 w-10 rounded bg-gray-100"></div>
@@ -127,7 +127,7 @@ export function ProjectsMobileSkeleton() {
 }
 
 export function ProjectsTableSkeleton() {
-  const { ROL } = process.env;
+  const { NEXT_PUBLIC_ROL } = process.env;
 
   return (
     <div className="mt-6 flow-root">
@@ -153,7 +153,7 @@ export function ProjectsTableSkeleton() {
                 <th scope="col" className="px-3 py-5 font-medium">
                   Fecha de Creación
                 </th>
-                {ROL === 'administrador' && (
+                {NEXT_PUBLIC_ROL === 'administrador' && (
                   <th
                     scope="col"
                     className="relative pb-4 pl-3 pr-6 pt-2 sm:pr-6"

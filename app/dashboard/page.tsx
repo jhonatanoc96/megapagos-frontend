@@ -2,11 +2,11 @@ import { notFound, redirect } from "next/navigation";
 
 export default function Dashboard() {
 
-    const { TOKEN, USER } = process.env;
+    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
 
-    if (!TOKEN || !USER) {
-        process.env.TOKEN = '';
-        process.env.USER = '';
+    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
+        process.env.NEXT_PUBLIC_TOKEN = '';
+        process.env.NEXT_PUBLIC_USER = '';
         return redirect('/login');
     }
 

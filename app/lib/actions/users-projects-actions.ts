@@ -19,11 +19,11 @@ export async function handleUserProject(formdata: FormData) {
         }
     }
 
-    const { TOKEN, USER } = process.env;
+    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
 
-    if (!TOKEN || !USER) {
-        process.env.TOKEN = '';
-        process.env.USER = '';
+    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
+        process.env.NEXT_PUBLIC_TOKEN = '';
+        process.env.NEXT_PUBLIC_USER = '';
         return redirect('/login');
     }
 
@@ -43,13 +43,13 @@ export async function handleUserProject(formdata: FormData) {
         method = 'POST';
     }
 
-    const response = await sendHttpRequest(path, method, TOKEN, body);
+    const response = await sendHttpRequest(path, method, NEXT_PUBLIC_TOKEN, body);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.TOKEN = '';
-        process.env.USER = '';
+        process.env.NEXT_PUBLIC_TOKEN = '';
+        process.env.NEXT_PUBLIC_USER = '';
         return redirect('/login');
     }
 
@@ -63,29 +63,29 @@ export async function handleUserProject(formdata: FormData) {
 }
 
 export async function getProjectsByUserID(id: string) {
-    const { TOKEN, USER } = process.env;
+    const { NEXT_PUBLIC_TOKEN, NEXT_PUBLIC_USER } = process.env;
 
-    if (!TOKEN || !USER) {
-        process.env.TOKEN = '';
-        process.env.USER = '';
+    if (!NEXT_PUBLIC_TOKEN || !NEXT_PUBLIC_USER) {
+        process.env.NEXT_PUBLIC_TOKEN = '';
+        process.env.NEXT_PUBLIC_USER = '';
         return redirect('/login');
     }
 
     let path = '/usuario-proyectos/obtener-por-usuario/' + id;
 
-    const response = await sendHttpRequest(path, 'GET', TOKEN);
+    const response = await sendHttpRequest(path, 'GET', NEXT_PUBLIC_TOKEN);
 
     const { status, message } = response;
 
     if (!status || !message) {
-        process.env.TOKEN = '';
-        process.env.USER = '';
+        process.env.NEXT_PUBLIC_TOKEN = '';
+        process.env.NEXT_PUBLIC_USER = '';
         return redirect('/login');
     }
 
     if (status !== 200) {
-        process.env.TOKEN = '';
-        process.env.USER = '';
+        process.env.NEXT_PUBLIC_TOKEN = '';
+        process.env.NEXT_PUBLIC_USER = '';
         return redirect(`/login?status=${status}&message=${message}`);
     }
 

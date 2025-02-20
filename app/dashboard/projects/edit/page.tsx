@@ -9,9 +9,9 @@ export default async function Page({
         id: string
     }>
 }) {
-    const { ROL } = process.env;
+    const { NEXT_PUBLIC_ROL } = process.env;
 
-    if (ROL === 'usuario') {
+    if (NEXT_PUBLIC_ROL === 'usuario') {
         return redirect('/dashboard/projects');
     }
 
