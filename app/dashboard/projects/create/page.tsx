@@ -1,15 +1,15 @@
-import Form from '@ui/users/create-form';
-import Breadcrumbs from '@ui/users/breadcrumbs';
+import Form from '@ui/projects/create-form';
+import Breadcrumbs from '@ui/projects/breadcrumbs';
 
 export default async function Page() {
     return (
         <main>
             <Breadcrumbs
                 breadcrumbs={[
-                    { label: 'Usuarios', href: '/dashboard/users' },
+                    { label: 'Proyectos', href: '/dashboard/projects' },
                     {
-                        label: 'Crear Usuario',
-                        href: '/dashboard/users/create',
+                        label: 'Crear Proyecto',
+                        href: '/dashboard/projects/create',
                         active: true,
                     },
                 ]}

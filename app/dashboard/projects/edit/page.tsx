@@ -1,5 +1,5 @@
-import Form from '@ui/users/edit-form';
-import Breadcrumbs from '@ui/users/breadcrumbs';
+import Form from '@ui/projects/edit-form';
+import Breadcrumbs from '@ui/projects/breadcrumbs';
 import { redirect } from 'next/navigation';
 
 export default async function Page({
@@ -14,17 +14,17 @@ export default async function Page({
     const id = params?.id;
 
     if (!id) {
-        redirect('/dashboard/users');
+        redirect('/dashboard/projects');
     }
 
     return (
         <main>
             <Breadcrumbs
                 breadcrumbs={[
-                    { label: 'Usuarios', href: '/dashboard/users' },
+                    { label: 'Proyectos', href: '/dashboard/projects' },
                     {
-                        label: 'Editar Usuario',
-                        href: '/dashboard/users/edit?id=' + id,
+                        label: 'Editar Proyecto',
+                        href: '/dashboard/projects/edit?id=' + id,
                         active: true,
                     },
                 ]}
