@@ -23,7 +23,7 @@ export default async function Form({
         <form key={user.id} action={handleUserProject} className="mb-4">
           <input type="hidden" name="proyecto_id" value={id} />
           <input type="hidden" name="asignado" value={user.proyecto ? 'true' : 'false'} />
-          <div className="rounded-md bg-gray-50 p-4 md:p-6 flex items-center justify-between">
+          <div className="div_form rounded-md bg-gray-50 p-4 md:p-6 flex items-center justify-between">
             <div>
               <p className="text-sm font-medium">{user.nombre}</p>
               <p className="text-sm text-gray-500">{user.email}</p>
@@ -50,7 +50,7 @@ export default async function Form({
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/dashboard/projects"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+          className="cancel_button flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
           Cancelar
         </Link>

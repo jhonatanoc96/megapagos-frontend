@@ -2,17 +2,221 @@
 @tailwind components;
 @tailwind utilities;
 
-input[type='number'] {
+input {
+  border: solid 1px black !important;
+}
+
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-input[type='number']::-webkit-inner-spin-button {
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type='number']::-webkit-outer-spin-button {
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+body {
+  font-family: "Lexend", sans-serif;
+}
+
+thead {
+  border-bottom: solid 1px;
+  background: #bcbcbc;
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0px 0px 3px white;
+}
+
+.div_container {
+  background: linear-gradient(
+    45deg,
+    rgba(196, 201, 196, 1) 0%,
+    rgba(221, 221, 221, 1) 15%,
+    rgba(254, 254, 254, 1) 35%,
+    rgba(224, 224, 224, 1) 61%,
+    rgba(235, 235, 235, 1) 77%,
+    rgba(210, 209, 209, 1) 100%
+  );
+  box-shadow:
+    inset 0px 0px 3px black,
+    inset 0px 0px 5px black,
+    inset 0px 0px 8px black,
+    inset 0px 0px 15px black;
+}
+
+.add_button {
+  background: white;
+  border-radius: 4px;
+  box-shadow:
+    0px 1px 1px #000000,
+    1px 2px 2px #3e3e3e,
+    2px 4px 4px #4b4646;
+  color: black;
+}
+
+.edit_button {
+  background: white;
+  border-radius: 4px;
+  box-shadow:
+    0px 1px 1px #000000,
+    1px 2px 2px #3e3e3e,
+    2px 4px 4px #4b4646;
+  color: blue;
+}
+
+.trash_button {
+  border-radius: 4px;
+  box-shadow:
+    0px 1px 1px #000000,
+    1px 2px 2px #3e3e3e,
+    2px 4px 4px #4b4646;
+  background: #ffffff;
+  color: red;
+}
+
+.div_table {
+  border: solid 1px black;
+  border-radius: 0 0 10px 10px;
+}
+
+.primary_color {
+  color: #16db65;
+}
+
+.primary_bg {
+  background-color: #16db65;
+}
+
+.create_button {
+  border: solid 1px black;
+  background: #48b247;
+  text-shadow:
+    -1px -1px 1px black,
+    -1px 0px 1px black,
+    -1px 1px 1px black,
+    0px -1px 1px black,
+    0px 0px 1px black,
+    0px 1px 1px black,
+    1px -1px 1px black,
+    1px 0px 1px black,
+    1px 1px 1px black,
+    0px 1px 1px black;
+  box-shadow:
+    inset 0px 0px 7px #4fff4f,
+    inset 0px 0px 24px #57ff57,
+    0px 1px 1px black,
+    4px 4px 24px #ffffff !important;
+}
+
+.logout_button {
+  border: 1px solid #000;
+  color: white;
+  text-shadow:
+    -1px -1px 1px #000,
+    -1px 0 1px #000,
+    -1px 1px 1px #000,
+    0 -1px 1px #000,
+    0 0 1px #000,
+    0 1px 1px #000,
+    1px -1px 1px #000,
+    1px 0 1px #000,
+    1px 1px 1px #000,
+    0 1px 1px #000;
+  box-shadow:
+    inset 0 0 7px #ff4f4f,
+    inset 0 0 24px #ff5757,
+    0 1px 1px #000,
+    4px 4px 24px #ffffff !important;
+  background: linear-gradient(
+    0deg,
+    rgb(130 22 22) 0%,
+    rgb(217 57 57) 15%,
+    rgb(255 122 122) 35%,
+    rgb(255 99 99) 61%,
+    rgba(255, 187, 187, 1) 81%,
+    rgba(255, 110, 110, 1) 100%
+  );
+}
+
+.cancel_button {
+  border: 1px solid #000;
+  background: #b7b7b7;
+  text-shadow:
+    -1px -1px 1px #000,
+    -1px 0 1px #000,
+    -1px 1px 1px #000,
+    0 -1px 1px #000,
+    0 0 1px #000,
+    0 1px 1px #000,
+    1px -1px 1px #000,
+    1px 0 1px #000,
+    1px 1px 1px #000,
+    0 1px 1px #000;
+  box-shadow:
+    inset 0 0 7px #ffffff,
+    inset 0 0 24px #f4faf4,
+    0 1px 1px #000,
+    4px 4px 24px #fff !important;
+  color: white;
+}
+
+.div_form {
+  box-shadow:
+    0px 1px 1px black,
+    1px 2px 2px black,
+    2px 4px 4px black;
+  background: linear-gradient(
+    135deg,
+    hsl(0deg 0% 78.65%) 0%,
+    hsl(0, 0%, 100%) 18%,
+    hsl(0deg 6.1% 83.55%) 39%,
+    hsl(0deg 0% 85.69%) 62%,
+    hsl(0, 0%, 62%) 80%,
+    hsl(0deg 8.7% 68.25%) 100%
+  ) !important;
+}
+
+.div_logout {
+  margin: 3%;
+}
+
+.div_sidenav {
+  text-shadow:
+    -1px -1px 2px black,
+    -1px 0px 2px black,
+    -1px 1px 2px black,
+    0px -1px 2px black,
+    0px 0px 2px black,
+    0px 1px 2px black,
+    1px -1px 2px black,
+    1px 0px 2px black,
+    1px 1px 2px black,
+    0px 1px 1px black,
+    1px 2px 2px black,
+    2px 4px 4px black,
+    3px 6px 6px black,
+    4px 4px 8px black,
+    4px 4px 16px white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow:
+    inset 0px 0px 3px black,
+    inset 0px 0px 5px black,
+    inset 0px 0px 8px black,
+    inset 0px 0px 15px black;
+}
+
+
+.padding{
+  padding: 0 !important;
 }

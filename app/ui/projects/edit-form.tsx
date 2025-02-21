@@ -21,7 +21,7 @@ export default async function EditProjectForm({
       <form action={editProject}>
         <input type="hidden" name="id" value={project.id} />
 
-        <div className="rounded-md bg-gray-50 p-4 md:p-6">
+        <div className="div_form rounded-md bg-gray-50 p-4 md:p-6">
           {/* Nombre */}
           <div className="mb-4">
             <label htmlFor="amount" className="mb-2 block text-sm font-medium">
@@ -67,11 +67,11 @@ export default async function EditProjectForm({
         <div className="mt-6 flex justify-end gap-4">
           <Link
             href="/dashboard/projects"
-            className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+            className="cancel_button flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
           >
             Cancelar
           </Link>
-          <Button type="submit">Guardar</Button>
+          <Button className='create_button' type="submit">Guardar</Button>
         </div>
       </form>
 

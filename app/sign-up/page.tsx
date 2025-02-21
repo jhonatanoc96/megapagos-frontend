@@ -1,5 +1,5 @@
 import styles from './sign-up.module.css';
-import { lusitana } from '@ui/fonts';
+import { lexend, lusitana } from '@ui/fonts';
 import {
   AtSymbolIcon,
   KeyIcon,
@@ -16,11 +16,11 @@ export default function LoginForm() {
 
   return (
     <Suspense>
-      <div className={`${styles.container} flex items-center justify-center min-h-screen w-full`}>
+      <div className={`${styles.container} ${lexend.className} flex items-center justify-center min-h-screen w-full`}>
         <Notification />
         <form className="space-y-3" action={handleSignup}>
-          <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-            <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+          <div className={`${styles.div_form} flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8`}>
+          <h1 className={`mb-3 text-2xl ${styles.title}`}>
               Registrarse
             </h1>
             <div className="w-full">
@@ -106,8 +106,8 @@ export default function LoginForm() {
                 </div>
               </div>
             </div>
-            <Button type="submit" className="mt-4 w-full">
-              Registrarse <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+            <Button type="submit" className={`${styles.signup_btn} mt-4 w-full`}>
+              Registrarse <ArrowRightIcon className="ml-auto h-5 w-5 text-black" />
             </Button>
             <LoginButton />
           </div>

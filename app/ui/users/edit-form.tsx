@@ -22,7 +22,7 @@ export default async function EditUserForm({
       <form action={editUser}>
         <input type="hidden" name="id" value={user.id} />
 
-        <div className="rounded-md bg-gray-50 p-4 md:p-6">
+        <div className="div_form rounded-md bg-gray-50 p-4 md:p-6">
           {/* Nombre */}
           <div className="mb-4">
             <label htmlFor="amount" className="mb-2 block text-sm font-medium">
@@ -69,11 +69,11 @@ export default async function EditUserForm({
         <div className="mt-6 flex justify-end gap-4">
           <Link
             href="/dashboard/users"
-            className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+            className="cancel_button flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
           >
             Cancelar
           </Link>
-          <Button type="submit">Guardar</Button>
+          <Button className='create_button' type="submit">Guardar</Button>
         </div>
       </form>
 
@@ -81,7 +81,7 @@ export default async function EditUserForm({
       <form action={changePassword}>
         <input type="hidden" name="id" value={user.id} />
 
-        <div className="rounded-md bg-gray-50 p-4 md:p-6">
+        <div className="div_form rounded-md bg-gray-50 p-4 md:p-6">
 
           {/* Contraseña */}
           <div className="mb-4">
@@ -125,7 +125,7 @@ export default async function EditUserForm({
 
         </div>
         <div className="mt-6 flex justify-end gap-4">
-          <Button type="submit">Cambiar Contraseña</Button>
+          <Button className='create_button' type="submit">Cambiar Contraseña</Button>
         </div>
       </form>
     </div>
