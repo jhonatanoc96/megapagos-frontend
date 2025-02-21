@@ -20,7 +20,7 @@ export default function LoginForm() {
         <form className="space-y-3" action={handleLogin}>
           <div className={`${styles.div_form} flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8`}>
             <h1 className={`mb-3 text-2xl ${styles.title}`}>
-              Inicia sesión para continuar.
+              Inicia sesión para continuar
             </h1>
             <div className="w-full">
               <div>
